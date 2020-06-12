@@ -22,13 +22,16 @@ form {
   }
 }
 
-input[type=text]:not(.browser-default):focus:not([readonly]),
-input[type=text]:not(.browser-default):focus:not([readonly]),
-input[type=text]:not(.browser-default):focus:not([readonly]),
-textarea.materialize-textarea:focus:not([readonly]) {
-  border-color: #ec407a;
-  box-shadow: none;
+$form-selectors: "input[type=text]", "input[type=email]", "input[type=password]";
+
+@each $form-selector in $form-selectors {
+  #{$form-selector}:not(.browser-default):focus:not([readonly]),
+  textarea.materialize-textarea:focus:not([readonly]) {
+    border-color: #ec407a;
+    box-shadow: none;
+  }
 }
+
 
 
 
