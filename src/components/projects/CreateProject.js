@@ -1,4 +1,6 @@
 import React, { PureComponent } from 'react'
+import { connect } from 'react-redux';
+import { createProject } from '../../store/actions/projectActions';
 
 class CreateProject extends PureComponent {
   state = {
@@ -8,14 +10,16 @@ class CreateProject extends PureComponent {
 
   handleSubmit = (e) => {
     e.preventDefault();
+
+    this.props.createProject(this.state)
   }
 
   handleInputChange = (e) => {
     this.setState({
       [e.target.id]: e.target.value
     })
-
   }
+
   render() {
     return (
       <div className="container">
@@ -38,4 +42,8 @@ class CreateProject extends PureComponent {
   }
 }
 
-export default CreateProject;
+const mapDispatchToProps = (dispatch) => ({
+  createProject: (project) => dispatch(createProject(project))
+})
+
+export default connect(null, mapDispatchToProps)(CreateProject);
