@@ -1,3 +1,5 @@
+$form-selectors: "input[type=text]", "input[type=email]", "input[type=password]";
+
 html {
   min-height: 100%;
 }
@@ -22,7 +24,6 @@ form {
   }
 }
 
-$form-selectors: "input[type=text]", "input[type=email]", "input[type=password]";
 
 @each $form-selector in $form-selectors {
   #{$form-selector}:not(.browser-default):focus:not([readonly]),
