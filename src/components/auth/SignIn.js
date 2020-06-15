@@ -1,4 +1,7 @@
+import { connect } from 'react-redux';
 import React, { PureComponent } from 'react'
+
+import { signIn } from '../../store/actions/authActions';
 
 class SignIn extends PureComponent {
   state = {
@@ -8,6 +11,7 @@ class SignIn extends PureComponent {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    this.props.signIn(this.state);
   }
 
   handleInputChange = (e) => {
@@ -17,6 +21,7 @@ class SignIn extends PureComponent {
 
   }
   render() {
+    const { authError } = this.props;
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit} className="white">
@@ -31,6 +36,9 @@ class SignIn extends PureComponent {
           </div>
           <div className="input-field">
             <button className="btn pink lighten-1 z-depth-0">Login</button>
+            <div className="red-text center">
+              {authError ? <p>{authError}</p> : null}
+            </div>
           </div>
         </form>
       </div>
@@ -38,4 +46,14 @@ class SignIn extends PureComponent {
   }
 }
 
-export default SignIn;
+const mapStateToProps = (state) => ({
+  authError: state.auth.authError
+})
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signIn: (creds) => dispatch(signIn(creds))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
