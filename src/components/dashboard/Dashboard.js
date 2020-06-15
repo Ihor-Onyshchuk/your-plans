@@ -1,5 +1,7 @@
-import React, { PureComponent } from 'react';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
+import React, { PureComponent } from 'react';
+import { firestoreConnect } from 'react-redux-firebase';
 
 import Notifications from './Notifications';
 import ProjectList from '../projects/ProjectList';
@@ -22,10 +24,15 @@ class Dashboard extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ project }) => {
+const mapStateToProps = (state) => {
   return {
-    projects: project.projects
+    projects: state.firestore.ordered.projects
   }
 }
 
-export default connect(mapStateToProps)(Dashboard);
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([
+    { collection: 'projects' }
+  ])
+)(Dashboard);
