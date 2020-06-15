@@ -16,17 +16,29 @@ const store = createStore(
 	rootReducer,
 	compose(
 		applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
-		reactReduxFirebase(firebaseConfig),
-		reduxFirestore(firebaseConfig)
+		reduxFirestore(firebaseConfig),
+		reactReduxFirebase(firebaseConfig, { attachAuthIsReady: true })
 	)
 );
 
-ReactDOM.render(
-	<React.StrictMode>
-		<Provider store={store}>
-			<App />
-		</Provider>
-	</React.StrictMode>,
-	document.getElementById('root')
-);
-serviceWorker.unregister();
+store.firebaseAuthIsReady.then(() => {
+	ReactDOM.render(
+		<React.StrictMode>
+			<Provider store={store}>
+				<App />
+			</Provider>
+		</React.StrictMode>,
+		document.getElementById('root')
+	);
+	serviceWorker.unregister();
+})
+
+// ReactDOM.render(
+// 	<React.StrictMode>
+// 		<Provider store={store}>
+// 			<App />
+// 		</Provider>
+// 	</React.StrictMode>,
+// 	document.getElementById('root')
+// );
+// serviceWorker.unregister();
