@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import React, { PureComponent } from 'react'
+import { Redirect } from 'react-router-dom';
 
 import { signIn } from '../../store/actions/authActions';
 
@@ -21,7 +22,9 @@ class SignIn extends PureComponent {
 
   }
   render() {
-    const { authError } = this.props;
+    const { authError, auth } = this.props;
+    if (auth.uid) return <Redirect to='/' />
+
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit} className="white">
@@ -47,7 +50,8 @@ class SignIn extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  authError: state.auth.authError
+  authError: state.auth.authError,
+  auth: state.firebase.auth
 })
 
 const mapDispatchToProps = (dispatch) => {
