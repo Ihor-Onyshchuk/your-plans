@@ -10,7 +10,6 @@ class CreateProject extends PureComponent {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
     this.props.createProject(this.state)
   }
 
