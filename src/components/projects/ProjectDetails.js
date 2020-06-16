@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -14,8 +15,12 @@ const ProjectDetails = ({ project, auth }) => {
           <p>{project.content}</p>
         </div>
         <div className="card-action gret lighten-4 grey-text">
-          <div>Posted by {project.authorFirstName} {project.authorLastName}</div>
-          <div>2nd September, 2am</div>
+          <div>
+            Posted by {project.authorFirstName} {project.authorLastName}
+          </div>
+          <div>
+            {moment(project.createdAt.toDate().toString()).calendar()}
+          </div>
         </div>
       </div>
     </div>
