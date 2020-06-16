@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react'
 import { connect } from 'react-redux';
+import React, { PureComponent } from 'react'
 import { Redirect } from 'react-router-dom';
 
 import { createProject } from '../../store/actions/projectActions';
