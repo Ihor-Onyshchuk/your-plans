@@ -28,7 +28,6 @@ class SignUp extends PureComponent {
   render() {
     const { auth, authError } = this.props;
     if (auth.uid) return <Redirect to='/' />
-    // console.log('props in SignUp', this.props)
 
     return (
       <div className="container">

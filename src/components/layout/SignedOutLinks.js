@@ -8,5 +8,4 @@ const SignedOutLinks = () => (
   </ul>
 )
 
-
 export default SignedOutLinks;

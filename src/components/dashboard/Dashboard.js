@@ -9,7 +9,6 @@ import ProjectList from '../projects/ProjectList';
 
 class Dashboard extends PureComponent {
 	render() {
-		// console.log('props in dashboard', this.props);
 		const { projects, auth, notifications } = this.props;
 		if (!auth.uid) return <Redirect to='/signin' />;
 
@@ -29,7 +28,6 @@ class Dashboard extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
-	console.log('dashboard firestore notifications', state.firestore.ordered.notifications);
 	return {
 		projects: state.firestore.ordered.projects,
 		auth: state.firebase.auth,
