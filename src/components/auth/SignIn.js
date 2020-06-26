@@ -21,10 +21,10 @@ class SignIn extends PureComponent {
     })
 
   }
+
   render() {
     const { authError, auth } = this.props;
     if (auth.uid) return <Redirect to='/' />
-
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit} className="white">

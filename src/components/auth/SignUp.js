@@ -24,9 +24,11 @@ class SignUp extends PureComponent {
     })
 
   }
+
   render() {
     const { auth, authError } = this.props;
     if (auth.uid) return <Redirect to='/' />
+    // console.log('props in SignUp', this.props)
 
     return (
       <div className="container">
@@ -67,7 +69,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  signUp: (newUser) => dispatch(signUp(newUser))
+  signUp: (creds) => dispatch(signUp(creds))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

@@ -4,8 +4,9 @@ import { NavLink } from 'react-router-dom';
 
 import { signOut } from '../../store/actions/authActions';
 
-const SignedInLinks = ({ signOut, profile }) => (
-  <ul className="right">
+const SignedInLinks = ({ signOut, profile }) => {
+  // console.log('profile initials', profile.initials);
+  return <ul className="right">
     <li>
       <NavLink to='/create'>New Project</NavLink>
     </li>
@@ -18,7 +19,7 @@ const SignedInLinks = ({ signOut, profile }) => (
       </NavLink>
     </li>
   </ul>
-)
+}
 
 const mapDispatchToProps = (dispatch) => ({
   signOut: () => dispatch(signOut())

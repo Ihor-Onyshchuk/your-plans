@@ -23,7 +23,8 @@ class CreateProject extends PureComponent {
   }
 
   render() {
-    if (!this.props.auth.uid) return <Redirect to='/signin' />;
+    const { auth } = this.props;
+    if (!auth.uid) return <Redirect to='/signin' />;
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit} className="white">

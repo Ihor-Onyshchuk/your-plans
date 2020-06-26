@@ -9,9 +9,10 @@ import ProjectList from '../projects/ProjectList';
 
 class Dashboard extends PureComponent {
   render() {
-    const { projects, auth } = this.props;
-
+    // console.log('props in dashboard', this.props);
+    const { projects, auth, notifications } = this.props;
     if (!auth.uid) return <Redirect to='/signin' />;
+
     return (
       <div className="dashboard container">
         <div className="row">
@@ -19,7 +20,7 @@ class Dashboard extends PureComponent {
             <ProjectList projects={projects} />
           </div>
           <div className="col s12 m5 offset-m1">
-            <Notifications />
+            <Notifications notifications={notifications} />
           </div>
         </div>
       </div>
@@ -28,15 +29,18 @@ class Dashboard extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
+  console.log('dashboard firestore notifications', state.firestore.ordered.notifications);
   return {
     projects: state.firestore.ordered.projects,
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    notifications: state.firestore.ordered.notifications
   }
 }
 
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([
-    { collection: 'projects' }
+    { collection: 'projects' },
+    { collection: 'notifications', limit: 3 }
   ])
 )(Dashboard);
