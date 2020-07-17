@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-The application allows you and other users to create plans and save them in the firebase database, but you must first log in or register.
+The application allows you and other users to create plans and save them in the [firebase](https://console.firebase.google.com/u/0/) database, but you must first log in or register.
 
 ## Getting started
 
