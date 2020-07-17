@@ -11,7 +11,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Usage
 * Clone project
 * Run `npm install`
-* in the src folder, create the `config 'folder and place it in the fbConfig.js file with the firebase configuration
+* in the `src` folder, create the `config` folder and place it in the `fbConfig.js` file with the firebase configuration
 * Run `npm start`
 
 Runs the app in the development mode.
